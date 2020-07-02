@@ -1,12 +1,13 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
+import { login, register } from './controllers/auth-controller.ts'
 
 const router = new Router()
 const baseVersion = '/api/v1'
 
 // Authentication API
 router
-    .post(`${baseVersion}/auth/login`, )
-    .post(`${baseVersion}/auth/register`, )
+    .post(`${baseVersion}/auth/login`, login)
+    .post(`${baseVersion}/auth/register`, register)
 
 // Skulks API
 router
