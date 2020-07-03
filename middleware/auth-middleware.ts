@@ -27,7 +27,8 @@ export const authMiddleware = async (ctx: Context, next: any) => {
     }
 
     // check if user has a valid token
-    if(verifyToken(jwtToken)){
+    const isTokenVerified = await verifyToken(jwtToken)
+    if(isTokenVerified){
         await next()
         return
     }
