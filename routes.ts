@@ -1,5 +1,6 @@
 import { Router } from "https://deno.land/x/oak/mod.ts";
 import { login, register } from './controllers/auth-controller.ts'
+import { authMiddleware } from './middleware/auth-middleware.ts'
 
 const router = new Router()
 const baseVersion = '/api/v1'
@@ -11,8 +12,10 @@ router
 
 // Skulks API
 router
-    .post(`${baseVersion}/skulks/search`, )
-    .get(`${baseVersion}/skulks`)
+    .post(`${baseVersion}/skulks/search`)
+    .get(`${baseVersion}/skulks`, authMiddleware, (ctx) => {
+        ctx.response.body = "welcome to the skulks!"
+    })
 
 // Conversation API
 router
